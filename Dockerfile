@@ -16,3 +16,6 @@ RUN apt-get update && \
      apt-get install -y docker-engine && \
      rm -rf /var/lib/apt/lists/* && \
      echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
+
+USER jenkins
+ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/jenkins.sh"]
